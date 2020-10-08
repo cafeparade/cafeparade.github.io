@@ -2,7 +2,7 @@
  * Created by beat on 2016/01/14.
  */
 
-(function($){
+(function ($) {
     //画像関連
     var img;
     var img2;
@@ -15,6 +15,12 @@
         baseImg.src = 'fire.png';
         img = new createjs.Bitmap(baseImg);
 
+        // switch (attribution){
+        //     case 'fire':
+        //         baseImg.src = 'fire.png';
+        //         break;
+        // }
+
         // if(attribution == fire){
         //     var baseImg = new Image();
         //     baseImg.src = 'fire.png';
@@ -22,7 +28,7 @@
         // }
 
         //画像が選択されている時のみ合成
-        if(imageData !== null) {
+        if (imageData !== null) {
             var baseImg2 = new Image();
             baseImg2.src = imageData;
             img2 = new createjs.Bitmap(baseImg2);
@@ -32,7 +38,7 @@
     }
 
     //画像と文字を合成する処理
-    function genImage (imageIni, txt){
+    function genImage(imageIni, txt) {
         //合成画像の設定
         //上下は10ピクセルごと移動
         img2.x = imageIni.xPos * 10;
@@ -46,9 +52,14 @@
         stage.addChild(img);
 
         //文字オブジェクトを生成してステージに追加
-        $.each(txt,function(key,value){
+        $.each(txt, function (key, value) {
             //本文は入力された内容をそのまま取る
             var content = $('#' + key).val();
+
+            //30文字で改行を行う
+            if (key == 'txt02') {
+                var content = content.replace(/[\r|\r\n|\n]/g, "").replace(/(.{30})/g, "$1" + "\n");
+            }
 
             //文字生成
             var obj = new createjs.Text(content);
@@ -67,60 +78,55 @@
         stage.update();
     }
 
-    function downloadImage(imageData){
+    function downloadImage(imageData) {
         window.location = imageData;
     }
 
-
-    $(function(){
+    $(function () {
         //読込画像のオブジェクト
         var imageIni = {
-            xPos : 0,
-            yPos : 0,
-            Scale : 0,
-            imageData : null,
-            resetImage : function(){
+            xPos: 0,
+            yPos: 0,
+            Scale: 0,
+            imageData: null,
+            resetImage: function () {
                 this.xPos = 0;
                 this.yPos = 0;
                 this.Scale = 0;
             },
-            makeImage : function(){
-                if(this.imageData !== null) {
+            makeImage: function () {
+                if (this.imageData !== null) {
                     loadImage(this.imageData);
                     genImage(this, txt);
                 }
             }
         };
 
-        var attribution = {
-
-        }
-
         //合成する文字の位置情報などを定義
         var txt = {
-            'txt01' : {
-                'x' : 320,
+            'txt01': {
+                'x': 320,
                 'y': 510,
                 'font': '27px/1.5 Meiryo,sans-serif',
                 'align': 'center',
                 'color': 'black'
             },
-            'txt02' : {
-                'x' : 55,
+            'txt02': {
+                'x': 55,
                 'y': 565,
                 'font': '23px/1.5 MS UI Gothic,sans-serif',
                 'align': 'left',
                 'color': 'black'
             },
-            'txt03' : {
-                'x' : 190,
+            'txt03': {
+                'x': 190,
                 'y': 735,
                 'font': '30px/1.5 arial black,sans-serif',
                 'align': 'center',
                 'color': 'red'
             },
-            'txt04' : {
-                'x' : 490,
+            'txt04': {
+                'x': 490,
                 'y': 735,
                 'font': '30px/1.5 arial black,sans-serif',
                 'align': 'center',
@@ -130,54 +136,54 @@
 
         //イベント関連処理
         //初回のみCanvasを作成しておく
-        $(window).on('load',function(){
+        $(window).on('load', function () {
             loadImage(null);
         });
 
         //画像読込
-        $('#getfile').change(function (){
+        $('#getfile').change(function () {
             //読み込み
-            var fileList =$('#getfile').prop('files');
+            var fileList = $('#getfile').prop('files');
             var reader = new FileReader();
             reader.readAsDataURL(fileList[0]);
 
             //読み込み後
-            $(reader).on('load',function(){
-                $('#preview').prop('src',reader.result);
+            $(reader).on('load', function () {
+                $('#preview').prop('src', reader.result);
                 imageIni.imageData = reader.result;
             });
         });
 
 
         //ボタンイベントまとめ
-        $('.btn').on('click',function(e){
-            if (e.target.id === "update"){
+        $('.btn').on('click', function (e) {
+            if (e.target.id === "update") {
                 //画像生成は個別処理なし
-            }else if (e.target.id === "up"){
+            } else if (e.target.id === "up") {
                 imageIni.yPos -= 1;
-            }else if (e.target.id === "down"){
+            } else if (e.target.id === "down") {
                 imageIni.yPos += 1;
-            }else if (e.target.id === "left"){
+            } else if (e.target.id === "left") {
                 imageIni.xPos -= 1;
-            }else if (e.target.id === "right") {
+            } else if (e.target.id === "right") {
                 imageIni.xPos += 1;
-            }else if (e.target.id === "zoomin") {
+            } else if (e.target.id === "zoomin") {
                 imageIni.Scale += 1;
-            }else if (e.target.id === "zoomout") {
+            } else if (e.target.id === "zoomout") {
                 imageIni.Scale -= 1;
-            }else if (e.target.id === "reset"){
+            } else if (e.target.id === "reset") {
                 imageIni.resetImage();
-            }else if (e.target.id === "dl"){
+            } else if (e.target.id === "dl") {
                 //TODO
                 downloadImage(imageIni.imageData);
                 return;
             }
 
             //画像操作時は再描画を行う
-            if(imageIni.imageData !== null){
+            if (imageIni.imageData !== null) {
                 imageIni.makeImage();
                 $("#alert").text("");
-            }else{
+            } else {
                 $("#alert").text("画像を選択してから画像生成を行ってください");
             }
         });
