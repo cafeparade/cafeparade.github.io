@@ -11,16 +11,15 @@
     //画像ロード
     function loadImage (imageData){
         //画像のロード
-        if (attribution == water){
-            var baseImg = new Image();
-            baseImg.src = 'fire.png';
-            img = new createjs.Bitmap(baseImg);
-        
-        elif(attribution == water)
-             var baseImg = new Image();
-             baseImg.src = 'water.png';
-             img = new createjs.Bitmap(baseImg);
-        }
+        var baseImg = new Image();
+        baseImg.src = 'fire.png';
+        img = new createjs.Bitmap(baseImg);
+
+        // if(attribution == fire){
+        //     var baseImg = new Image();
+        //     baseImg.src = 'fire.png';
+        //     img = new createjs.Bitmap(baseImg);
+        // }
 
         //画像が選択されている時のみ合成
         if(imageData !== null) {
