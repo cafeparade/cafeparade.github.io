@@ -1,0 +1,13 @@
+.smallTextBox {
+    width:120px;
+    box-sizing:border-box;
+}
+
+.mediumTextBox{
+    width:280px;
+    box-sizing:border-box;
+}
+
+textarea{
+    resize: none;
+}
