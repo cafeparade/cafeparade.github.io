@@ -9,23 +9,50 @@
     var stage;
 
     //画像ロード
-    function loadImage (imageData){
+    function loadImage(imageData) {
         //画像のロード
-        var baseImg = new Image();
-        baseImg.src = 'fire.png';
-        img = new createjs.Bitmap(baseImg);
+        // var baseImg = new Image();
+        // baseImg.src = 'base.png';
+        // img = new createjs.Bitmap(baseImg);
 
-        // switch (attribution){
-        //     case 'fire':
-        //         baseImg.src = 'fire.png';
-        //         break;
-        // }
+        var attribution = document.getElementById("attribution").value;
 
-        // if(attribution == fire){
-        //     var baseImg = new Image();
-        //     baseImg.src = 'fire.png';
-        //     img = new createjs.Bitmap(baseImg);
-        // }
+        if(attribution !== null){
+
+            var baseImg = new Image();
+
+            switch (attribution){
+                case 'fire':
+                    baseImg.src = 'fire.png';
+                    break;
+                case 'darkness':
+                    baseImg.src = 'darkness.png'
+                    break;
+                case 'grass':
+                    baseImg.src = 'grass.png'
+                    break;
+                case 'ice':
+                    baseImg.src = 'ice.png'
+                    break;
+                case 'machine':
+                    baseImg.src = 'machine.png'
+                    break;
+                case 'soil':
+                    baseImg.src = 'soil.png'
+                    break;
+                case 'thunder':
+                    baseImg.src = 'thunder.png'
+                    break;
+                case 'water':
+                    baseImg.src = 'water.png'
+                    break;
+                default:
+                    baseImg.src = 'base.png'
+            }
+
+            img = new createjs.Bitmap(baseImg);
+
+        }
 
         //画像が選択されている時のみ合成
         if (imageData !== null) {
@@ -89,13 +116,14 @@
             yPos: 0,
             Scale: 0,
             imageData: null,
+            attribution: null,
             resetImage: function () {
                 this.xPos = 0;
                 this.yPos = 0;
                 this.Scale = 0;
             },
             makeImage: function () {
-                if (this.imageData !== null) {
+                if (this.imageData !== null && attribution !== null) {
                     loadImage(this.imageData);
                     genImage(this, txt);
                 }
