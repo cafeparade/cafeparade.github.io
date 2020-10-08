@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ビークロジェネレータ</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="main.js"></script>
+</head>
+    <body>
+        <h1>ビークロジェネレータ</h1>
+        <dl class="table">
+            <dt>画像</dt>
+            <dd><span><img src="base.png" id="preview"></span><dd>
+            <dd><input type="file" accept="image/*" id="getfile"><dd>
+            <dt>名前</dt>
+            <dd><input type="text" name="txt01" id="txt01" placeholder="" maxlength="30" /></dd>
+            <dt>セリフ</dt>
+            <dd><textarea name="txt02" id="txt02" rows="4" cols="40"></textarea></dd>
+            <dt>ATK</dt>
+            <dd><textarea name="txt03" id="txt03" rows="1" cols="5" maxlength="5"></textarea></dd>
+            <dt>DEF</dt>
+            <dd><textarea name="txt04" id="txt04" rows="1" cols="5" maxlength="5"></textarea></dd>
+            <dt>属性</dt>
+            <dd>
+                <select name="attribution">
+                    <option value="">選択してください</option>
+                    <option value="fire">火</option>
+                    <option value="water">水</option>
+                    <option value="grass">草</option>
+                    <option value="ice">氷</option>
+                    <option value="machine">機</option>
+                    <option value="thunder">雷</option>
+                    <option value="darkness">闇</option>
+                </select>
+            </dd>
+        </dl>
+        <div class="btn">
+            <button id="update">画像生成</button>
+            <button id="left">←</button>
+            <button id="up">↑</button>
+            <button id="down">↓</button>
+            <button id="right">→</button>
+            <button id="zoomin">拡大</button>
+            <button id="zoomout">縮小</button>
+            <button id="reset">リセット</button>
+        </div>
+
+        <!-- 出力部分 -->
+        <div class="module">
+            <h2>生成結果</h2>
+            <h1 id="alert" style="color: red"></h1>
+            <canvas id="result" width="640" height="800"></canvas>
+        </div>
+    </body>
+</html>
