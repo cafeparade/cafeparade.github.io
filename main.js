@@ -9,7 +9,7 @@
     var stage;
 
     //画像ロード
-    function loadImage(imageData) {
+    function loadImage (imageData){
         //画像のロード
         // var baseImg = new Image();
         // baseImg.src = 'base.png';
