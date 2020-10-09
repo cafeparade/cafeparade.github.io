@@ -1,5 +1,5 @@
 ﻿/**
- * Created by beat on 2016/01/14.
+ * Created by　AzumaNord 2020/10/09
  */
 
 (function ($) {
@@ -85,7 +85,7 @@
 
             //30文字で改行を行う
             if (key == 'txt02') {
-                var content = content.replace(/[\r|\r\n|\n]/g, "").replace(/(.{30})/g, "$1" + "\n");
+                var content = content.replace(/[\r|\r\n|\n]/g, "").replace(/(.{27})/g, "$1" + "\n");
             }
 
             //文字生成
