@@ -85,7 +85,7 @@
 
             //30文字で改行を行う
             if (key == 'txt02') {
-                var content = content.replace(/[\r|\r\n|\n]/g, "").replace(/(.{25})/g, "$1" + "\n");
+                var content = content.replace(/[\r|\r\n|\n]/g, "").replace(/(.{23})/g, "$1" + "\n");
             }
 
             //文字生成
